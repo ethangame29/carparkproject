@@ -448,7 +448,7 @@ Add a screenshot of the GitHub repository after pushing the tag, showing the Car
 ```markdown
 ![Added methods to the car park class](images/methods-to-car-park.png)
 ```
-
+![Added new methods to CarPark](images/carparkclassimage.png)
 Answer the following questions:
 > **Review Questions**
 >
