@@ -454,7 +454,7 @@ Answer the following questions:
 >
 > 1. **Which class is responsible for each of the following pieces of information (and why)?**
 >    - _The number of available bays_
->      `Answer here...`
+>      `CarPark class is responsible for the number of available bays because it contains the available_bays method`
 >    - _The current temperature_
 >      `Answer here...`
 >    - _The time_
