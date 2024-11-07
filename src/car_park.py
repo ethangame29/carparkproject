@@ -14,6 +14,13 @@ class CarPark:
     def __str__(self):
         return f"Car Park {self.location} with {self.capacity} capacity"
 
+    @property
+    def available_bays(self):
+        if self.plates <= self.capacity:
+            return self.capacity - len(self.plates)
+        else:
+            return 0
+
     def register(self, component):
         if not isinstance(component, (Sensor, Display)):
             raise TypeError("Object must be a Sensor or Display")
@@ -22,11 +29,15 @@ class CarPark:
         elif isinstance(component, Display):
             self.displays.append(component)
 
-    def add_car(self, plates):
-        pass
+    def add_car(self, plate):
+        self.plates.append(plate)
+        self.update_displays()
 
     def remove_car(self, plates):
-        pass
+        self.plates.remove(plates)
+        self.update_displays()
 
     def update_displays(self):
-        pass
+        display_info = {"available_bays": self.available_bays, "temperature": 25}
+        for display in self.displays:
+            display.update(display_info)
