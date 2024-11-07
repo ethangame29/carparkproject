@@ -108,7 +108,7 @@ Include a screenshot of your GitHub repository `src/` directory **after** you ha
 ```markdown
 ![Added stubs for classes](images/stubs-for-classes.png)
 ```
-
+![Added three classes](images/githubimage2.png)
 ### Add constructors and attributes to the classes
 
 #### CarPark class
