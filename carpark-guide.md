@@ -710,7 +710,9 @@ if __name__ == "__main__":
    ```markdown
    ![Unit tests](images/unit-tests.png)
    ```
-
+![Unit tests failed](images/testsfailed.png)
+![Issue found](images/issuefoundandfixed.png)
+![Unit tests passed](images/testpass.png)
 2. Commit your changes to the local repository. Tag the commit with `s6` so your lecturer can find it:
 3. Push the tag to the remote repository:
 
