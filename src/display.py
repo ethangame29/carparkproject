@@ -8,6 +8,6 @@ class Display:
     def __str__(self):
         return f"Display {self.id}: Welcome"
 
-    def update(self, display_info):
-        for key, value in display_info.items():
-            print(f"{key}: {value}")
+    def update(self, info):
+        for key, value in info.items():
+            self.message = f"{key}: {value}"
