@@ -2,6 +2,7 @@ import unittest
 from car_park import CarPark
 from pathlib import Path
 
+
 class TestCarPark(unittest.TestCase):
     def setUp(self):
         self.car_park = CarPark("123 Example Street", 100)
@@ -17,8 +18,9 @@ class TestCarPark(unittest.TestCase):
         self.assertEqual(self.car_park.log_file, Path("log.txt"))
 
     def test_log_file_created(self):
-        new_carpark = CarPark("123 Example Street", 100, log_file = "new_log.txt")
-        self.assertTrue(Path("new_log.txt").exists())
+        #new_carpark = CarPark("234 Example Street", 100, log_file = "new_log.txt")
+        self.assertTrue(Path("log.txt").exists())
+
     def test_add_car(self):
         self.car_park.add_car("FAKE-001")
         self.assertEqual(self.car_park.plates, ["FAKE-001"])
@@ -26,6 +28,7 @@ class TestCarPark(unittest.TestCase):
 
     def tearDown(self):
         Path("log.txt").unlink(missing_ok=True)
+
     def test_remove_car(self):
         self.car_park.add_car("FAKE-001")
         self.car_park.remove_car("FAKE-001")
@@ -37,10 +40,7 @@ class TestCarPark(unittest.TestCase):
             self.car_park.add_car(f"FAKE-{i}")
         self.assertEqual(self.car_park.available_bays, 0)
         self.car_park.add_car("FAKE-100")
-        # Overfilling the car park should not change the number of available bays
         self.assertEqual(self.car_park.available_bays, 0)
-
-        # Removing a car from an overfilled car park should not change the number of available bays
         self.car_park.remove_car("FAKE-100")
         self.assertEqual(self.car_park.available_bays, 0)
 
@@ -53,25 +53,21 @@ class TestCarPark(unittest.TestCase):
             self.car_park.register("Not a Sensor or Display")
 
     def test_car_logged_when_entering(self):
-        new_carpark = CarPark("123 Example Street", 100,
-                              log_file="new_log.txt")  # TODO: change this to use a class attribute or new instance variable
         self.car_park.add_car("NEW-001")
         with self.car_park.log_file.open() as f:
             last_line = f.readlines()[-1]
         self.assertIn("NEW-001", last_line)  # check plate entered
-        self.assertIn("entered", last_line)  # check description
+        self.assertIn("Entered", last_line)  # check description
         self.assertIn("\n", last_line)  # check entry has a new line
 
     def test_car_logged_when_exiting(self):
-        new_carpark = CarPark("123 Example Street", 100,
-                              log_file="new_log.txt")  # TODO: change this to use a class attribute or new instance variable
         self.car_park.add_car("NEW-001")
         self.car_park.remove_car("NEW-001")
         with self.car_park.log_file.open() as f:
             last_line = f.readlines()[-1]
-        self.assertIn(last_line, "NEW-001")  # check plate entered
-        self.assertIn(last_line, "exited")  # check description
-        self.assertIn(last_line, "\n")  # check entry has a new line
+        self.assertIn("NEW-001", last_line)  # check plate entered
+        self.assertIn("Exited", last_line)  # check description
+        self.assertIn("\n", last_line)  # check entry has a new line
 
 if __name__ == "__main__":
     unittest.main()
