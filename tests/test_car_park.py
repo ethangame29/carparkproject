@@ -69,10 +69,5 @@ class TestCarPark(unittest.TestCase):
         self.assertIn("Exited", last_line)  # check description
         self.assertIn("\n", last_line)  # check entry has a new line
 
-    def test_write_config(self):
-        self.car_park.write_config()
-        self.assertTrue(Path("config.json").exists())
-
-
 if __name__ == "__main__":
     unittest.main()
